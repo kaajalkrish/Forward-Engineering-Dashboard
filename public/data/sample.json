@@ -1,0 +1,2878 @@
+{
+  "meta": {
+    "harnessName": "COBOL → Java Harness",
+    "harnessTagline": "Forward engineering · graph-first · agent-driven",
+    "workspace": "CardDemo",
+    "repoSlug": "aws-mf-mod-carddemo",
+    "sourceRepo": "source_code_to_analyse/aws-mf-mod-carddemo",
+    "timezone": "America/New_York",
+    "graphSnapshot": "neo4j · schemaVersion 2 · 2026-09-01",
+    "brdPath": "brd_output/brd/aws-mf-mod-carddemo/v3.html",
+    "codePath": "codegen_output/aws-mf-mod-carddemo",
+    "basePackage": "com.cobolmodernizer.awsmfmodcarddemo",
+    "generatedAt": "2026-09-30T09:40:00-04:00",
+    "updatedAt": "2026-09-30T10:12:30-04:00",
+    "dataSource": {
+      "mode": "sample",
+      "real": [],
+      "missing": [
+        {
+          "section": "Everything",
+          "needs": "Illustrative sample. Program, paragraph and file names are real CardDemo names; progress, costs and dates are made up."
+        }
+      ]
+    }
+  },
+  "weights": {
+    "stageWeight": 0.4,
+    "storyWeight": 0.6
+  },
+  "phases": [
+    {
+      "key": "understand",
+      "label": "Understand",
+      "summary": "Capture the business outcome, parse the COBOL estate into the Neo4j code graph and explore it.",
+      "stageKeys": [
+        "outcome",
+        "intake",
+        "parse",
+        "graph",
+        "explore"
+      ]
+    },
+    {
+      "key": "design",
+      "label": "Design",
+      "summary": "Grounded BRD, epics & stories, ranked seams, story plan, bounded contexts and service design.",
+      "stageKeys": [
+        "blueprint",
+        "backlog",
+        "seams",
+        "plan",
+        "domain",
+        "design"
+      ]
+    },
+    {
+      "key": "migrate",
+      "label": "Migrate",
+      "summary": "Build generates the Java code story by story; Verify checks it behaves like the COBOL.",
+      "stageKeys": [
+        "build",
+        "verify"
+      ]
+    },
+    {
+      "key": "implementation",
+      "label": "Implementation",
+      "summary": "The user stories being implemented, in build order. Each goes through the build loop: tests first, code, repair, quality gate.",
+      "stageKeys": [],
+      "showsStories": true
+    }
+  ],
+  "stages": [
+    {
+      "key": "outcome",
+      "label": "Outcome",
+      "phase": "understand",
+      "ordinal": 0,
+      "status": "passed",
+      "gateKey": null,
+      "mode": "deterministic",
+      "roles": [],
+      "input": "Business drivers from stakeholders",
+      "work": "Record the modernization outcome and success measures",
+      "output": "Outcome statement",
+      "updatedAt": "2026-09-01T09:05:00-04:00"
+    },
+    {
+      "key": "intake",
+      "label": "Intake",
+      "phase": "understand",
+      "ordinal": 1,
+      "status": "passed",
+      "gateKey": null,
+      "mode": "deterministic",
+      "roles": [],
+      "input": "source_code_to_analyse/aws-mf-mod-carddemo",
+      "work": "Discover COBOL, copybooks, JCL, BMS, CSD",
+      "output": "Workspace + repo inventory",
+      "updatedAt": "2026-09-01T09:10:00-04:00"
+    },
+    {
+      "key": "parse",
+      "label": "Parse",
+      "phase": "understand",
+      "ordinal": 2,
+      "status": "passed",
+      "gateKey": "parse",
+      "mode": "deterministic",
+      "roles": [],
+      "input": "31 programs, 47 copybooks",
+      "work": "ProLeap extractor → schemaVersion 2 JSON",
+      "output": "Program / paragraph / data-item contract",
+      "updatedAt": "2026-09-01T10:40:00-04:00"
+    },
+    {
+      "key": "graph",
+      "label": "Graph",
+      "phase": "understand",
+      "ordinal": 3,
+      "status": "passed",
+      "gateKey": "graph",
+      "mode": "deterministic",
+      "roles": [
+        "enrichment"
+      ],
+      "input": "Extractor JSON",
+      "work": "Ingest into Neo4j: CALLS, PERFORMS, READS, WRITES, EXECUTES_CICS",
+      "output": "Code graph (source of truth)",
+      "updatedAt": "2026-09-01T11:20:00-04:00"
+    },
+    {
+      "key": "explore",
+      "label": "Explore",
+      "phase": "understand",
+      "ordinal": 4,
+      "status": "passed",
+      "gateKey": null,
+      "mode": "llm",
+      "roles": [
+        "ask"
+      ],
+      "input": "Code graph",
+      "work": "Ask the codebase: graph-grounded Q&A",
+      "output": "Answers with graph citations",
+      "updatedAt": "2026-09-02T15:30:00-04:00"
+    },
+    {
+      "key": "blueprint",
+      "label": "Blueprint",
+      "phase": "design",
+      "ordinal": 5,
+      "status": "passed",
+      "gateKey": "brd_groundedness",
+      "mode": "llm",
+      "roles": [
+        "brd",
+        "judge"
+      ],
+      "input": "Code graph",
+      "work": "Subsystem map-reduce BRD, judged on five dimensions, improved",
+      "output": "BRD v3 (:BRD node + HTML)",
+      "updatedAt": "2026-09-04T15:35:00-04:00"
+    },
+    {
+      "key": "backlog",
+      "label": "Backlog",
+      "phase": "design",
+      "ordinal": 6,
+      "status": "passed",
+      "gateKey": "backlog_coverage",
+      "mode": "llm",
+      "roles": [
+        "story"
+      ],
+      "input": "BRD v3 requirements",
+      "work": "Epics first, then stories + acceptance criteria per epic",
+      "output": "3 epics · 9 stories · 20 ACs",
+      "updatedAt": "2026-09-06T12:10:00-04:00"
+    },
+    {
+      "key": "seams",
+      "label": "Seams",
+      "phase": "design",
+      "ordinal": 7,
+      "status": "passed",
+      "gateKey": null,
+      "mode": "deterministic",
+      "roles": [
+        "seam"
+      ],
+      "input": "Code graph",
+      "work": "Rank strangler-fig seams (pure Cypher, no LLM in scoring)",
+      "output": "9 ranked seam candidates",
+      "updatedAt": "2026-09-07T10:00:00-04:00"
+    },
+    {
+      "key": "plan",
+      "label": "Plan",
+      "phase": "design",
+      "ordinal": 8,
+      "status": "passed",
+      "gateKey": "stories_dag",
+      "mode": "deterministic",
+      "roles": [],
+      "input": "Backlog + seams",
+      "work": "Dependency derivation + topological order",
+      "output": "Acyclic story DAG",
+      "updatedAt": "2026-09-07T14:45:00-04:00"
+    },
+    {
+      "key": "domain",
+      "label": "Domain Design",
+      "phase": "design",
+      "ordinal": 9,
+      "status": "passed",
+      "gateKey": null,
+      "mode": "llm",
+      "roles": [
+        "design",
+        "judge"
+      ],
+      "input": "BRD + seam signals",
+      "work": "Bounded contexts, module-vs-microservice, DDD tactical design",
+      "output": "Domain design v2 (:DomainDesign)",
+      "updatedAt": "2026-09-09T15:10:00-04:00"
+    },
+    {
+      "key": "design",
+      "label": "Design",
+      "phase": "design",
+      "ordinal": 10,
+      "status": "passed",
+      "gateKey": "design_data_ownership",
+      "mode": "llm",
+      "roles": [
+        "design"
+      ],
+      "input": "Domain design + backlog",
+      "work": "Technical design: services, APIs, persistence, ADRs",
+      "output": "Technical design v1 + module scaffold",
+      "updatedAt": "2026-09-12T14:20:00-04:00"
+    },
+    {
+      "key": "build",
+      "label": "Build",
+      "phase": "migrate",
+      "ordinal": 11,
+      "status": "running",
+      "gateKey": "code",
+      "mode": "llm",
+      "roles": [
+        "codegen",
+        "repair",
+        "advisor"
+      ],
+      "input": "Story plan + context packs",
+      "work": "Per story: tests (red) → implementation (green) → repair → quality gate",
+      "output": "Spring Boot module in codegen_output/",
+      "updatedAt": "2026-09-30T10:05:00-04:00"
+    },
+    {
+      "key": "verify",
+      "label": "Verify",
+      "phase": "migrate",
+      "ordinal": 12,
+      "status": "pending",
+      "gateKey": "equivalence",
+      "mode": "deterministic",
+      "roles": [
+        "equivalence_triage"
+      ],
+      "input": "Golden master (COBOL) + candidate (Java) records",
+      "work": "Field-aware diff with COMP-3 / scale / date tolerance",
+      "output": "Verdict + seam-linked defect tickets"
+    }
+  ],
+  "gates": [
+    {
+      "key": "parse",
+      "stageKey": "parse",
+      "label": "Parse",
+      "status": "passed",
+      "threshold": "0 fatal parse errors",
+      "result": "31 / 31 programs parsed, 0 errors",
+      "updatedAt": "2026-09-01T10:40:00-04:00"
+    },
+    {
+      "key": "graph",
+      "stageKey": "graph",
+      "label": "Graph",
+      "status": "passed",
+      "threshold": "Every program ingested; copybooks resolved",
+      "result": "4,812 nodes · 11,406 edges · 47/47 copybooks resolved",
+      "updatedAt": "2026-09-01T11:20:00-04:00"
+    },
+    {
+      "key": "brd_groundedness",
+      "stageKey": "blueprint",
+      "label": "BRD judge",
+      "status": "passed",
+      "threshold": "Weighted judge score ≥ 4.2 and accuracy ≥ 3",
+      "result": "4.7 / 5, rated high (v3, after 2 improve passes)",
+      "updatedAt": "2026-09-04T15:35:00-04:00",
+      "approval": {
+        "decision": "approved",
+        "approverEmail": "tech.lead@carddemo.example",
+        "approverRole": "tech_lead",
+        "riskAccepted": false,
+        "rationale": "All requirement threads cite COBOL paragraphs; batch reporting deferred.",
+        "decidedAt": "2026-09-04T15:35:00-04:00"
+      }
+    },
+    {
+      "key": "backlog_coverage",
+      "stageKey": "backlog",
+      "label": "Backlog coverage",
+      "status": "passed",
+      "threshold": "Every BRD requirement covered by ≥1 story; no orphan stories",
+      "result": "10 / 10 requirements covered · 0 orphans · 0 unknown refs",
+      "updatedAt": "2026-09-06T12:10:00-04:00",
+      "approval": {
+        "decision": "approved",
+        "approverEmail": "product.owner@carddemo.example",
+        "approverRole": "product_owner",
+        "riskAccepted": false,
+        "rationale": "Stories are INVEST; ACs are testable.",
+        "decidedAt": "2026-09-06T13:00:00-04:00"
+      }
+    },
+    {
+      "key": "stories_dag",
+      "stageKey": "plan",
+      "label": "Story DAG",
+      "status": "passed",
+      "threshold": "Dependency graph acyclic",
+      "result": "9 stories · 7 edges · 0 cycles",
+      "updatedAt": "2026-09-07T14:45:00-04:00",
+      "approval": {
+        "decision": "approved",
+        "approverEmail": "tech.lead@carddemo.example",
+        "approverRole": "tech_lead",
+        "riskAccepted": false,
+        "rationale": "Reader seams first, then the posting writer path.",
+        "decidedAt": "2026-09-07T15:00:00-04:00"
+      }
+    },
+    {
+      "key": "design_data_ownership",
+      "stageKey": "design",
+      "label": "Data ownership",
+      "status": "passed",
+      "threshold": "Every VSAM file owned by exactly one context",
+      "result": "7 / 7 files single-owner (CARDXREF moved to Card)",
+      "updatedAt": "2026-09-12T14:20:00-04:00",
+      "approval": {
+        "decision": "approved",
+        "approverEmail": "architect@carddemo.example",
+        "approverRole": "architect",
+        "riskAccepted": false,
+        "rationale": "Modular monolith for Account + Card; Posting as a service.",
+        "decidedAt": "2026-09-12T14:20:00-04:00"
+      }
+    },
+    {
+      "key": "code",
+      "stageKey": "build",
+      "label": "Code",
+      "status": "open",
+      "threshold": "Every story passed / generated-unverified; mvn verify green",
+      "result": "4 / 9 stories accepted · STORY-005 in repair"
+    },
+    {
+      "key": "equivalence",
+      "stageKey": "verify",
+      "label": "Equivalence",
+      "status": "open",
+      "threshold": "0 mismatches outside tolerance",
+      "result": "Waiting for Build"
+    }
+  ],
+  "agentRoles": [
+    {
+      "role": "enrichment",
+      "label": "Enrichment",
+      "tier": "haiku",
+      "model": "claude-haiku-4-5-20251001",
+      "envVar": "ENRICHMENT_MODEL",
+      "stages": [
+        "graph"
+      ],
+      "description": "Summarises programs and paragraphs onto graph nodes.",
+      "runs": 31,
+      "costUsd": 0.62,
+      "tokens": 410000
+    },
+    {
+      "role": "ask",
+      "label": "Ask",
+      "tier": "haiku",
+      "model": "claude-haiku-4-5-20251001",
+      "envVar": "ASK_MODEL",
+      "stages": [
+        "explore"
+      ],
+      "description": "Answers questions about the codebase, grounded in graph queries.",
+      "runs": 14,
+      "costUsd": 0.21,
+      "tokens": 96000
+    },
+    {
+      "role": "brd",
+      "label": "BRD writer",
+      "tier": "sonnet",
+      "model": "claude-sonnet-4-6",
+      "envVar": "BRD_AGENT_MODEL",
+      "stages": [
+        "blueprint"
+      ],
+      "description": "Map-reduce BRD: one subsystem per map call, reduced with an evidence map.",
+      "runs": 9,
+      "costUsd": 3.84,
+      "tokens": 1210000
+    },
+    {
+      "role": "judge",
+      "label": "Judge",
+      "tier": "opus",
+      "model": "claude-opus-4-8",
+      "envVar": "JUDGE_MODEL",
+      "stages": [
+        "blueprint",
+        "domain"
+      ],
+      "description": "Scores BRD and designs on five dimensions; drives the improve loop.",
+      "runs": 5,
+      "costUsd": 2.95,
+      "tokens": 380000
+    },
+    {
+      "role": "seam",
+      "label": "Seam narrator",
+      "tier": "sonnet",
+      "model": "claude-sonnet-4-6",
+      "envVar": "SEAM_MODEL",
+      "stages": [
+        "seams"
+      ],
+      "description": "Explains ranked seams in business terms (scores stay pure Cypher).",
+      "runs": 1,
+      "costUsd": 0.34,
+      "tokens": 88000
+    },
+    {
+      "role": "story",
+      "label": "Story writer",
+      "tier": "sonnet",
+      "model": "claude-sonnet-4-6",
+      "envVar": "STORY_MODEL",
+      "stages": [
+        "backlog"
+      ],
+      "description": "Epics first, then INVEST stories and acceptance criteria per epic.",
+      "runs": 4,
+      "costUsd": 1.12,
+      "tokens": 305000
+    },
+    {
+      "role": "design",
+      "label": "Designer",
+      "tier": "opus",
+      "model": "claude-opus-4-8",
+      "envVar": "DESIGN_MODEL",
+      "stages": [
+        "domain",
+        "design"
+      ],
+      "description": "Bounded contexts, topology decision, tactical DDD and technical design.",
+      "runs": 7,
+      "costUsd": 4.1,
+      "tokens": 520000
+    },
+    {
+      "role": "codegen",
+      "label": "Codegen",
+      "tier": "sonnet",
+      "model": "claude-sonnet-4-6",
+      "envVar": "CODEGEN_MODEL",
+      "stages": [
+        "build"
+      ],
+      "description": "Generates story tests and minimal Spring Boot implementation.",
+      "runs": 6,
+      "costUsd": 2.48,
+      "tokens": 690000
+    },
+    {
+      "role": "repair",
+      "label": "Repair",
+      "tier": "opus",
+      "model": "claude-opus-4-8",
+      "envVar": "REPAIR_MODEL",
+      "stages": [
+        "build"
+      ],
+      "description": "Re-generates the implementation from the failing Maven log (bounded attempts).",
+      "runs": 3,
+      "costUsd": 2.21,
+      "tokens": 240000
+    },
+    {
+      "role": "advisor",
+      "label": "Advisor",
+      "tier": "opus",
+      "model": "claude-opus-4-8",
+      "envVar": "ADVISOR_MODEL",
+      "stages": [
+        "build"
+      ],
+      "description": "Budgeted escalation for hard calls (ADVISOR_MAX_USES).",
+      "runs": 1,
+      "costUsd": 0.53,
+      "tokens": 41000
+    },
+    {
+      "role": "equivalence_triage",
+      "label": "Equivalence triage",
+      "tier": "haiku",
+      "model": "claude-haiku-4-5-20251001",
+      "envVar": "EQUIV_TRIAGE_MODEL",
+      "stages": [
+        "verify"
+      ],
+      "description": "Optional narrative over equivalence mismatches.",
+      "runs": 0,
+      "costUsd": 0,
+      "tokens": 0
+    }
+  ],
+  "buildSteps": [
+    {
+      "key": "context",
+      "label": "Context pack",
+      "module": "codegen/story_context.py",
+      "mode": "deterministic",
+      "description": "Graph-grounded slice for one story: COBOL paragraphs, copybooks, owned files, API contracts."
+    },
+    {
+      "key": "tests",
+      "label": "Generate tests",
+      "module": "codegen/patch_agent.py · generate_story_tests",
+      "mode": "deterministic",
+      "toggle": "STORY_LLM_TESTS",
+      "description": "JUnit acceptance tests, one per acceptance criterion, citing the story id."
+    },
+    {
+      "key": "red",
+      "label": "RED baseline",
+      "module": "codegen/test_runner.py",
+      "mode": "toolchain",
+      "description": "Targeted mvn -Dtest run before any code: the story must start red."
+    },
+    {
+      "key": "impl",
+      "label": "Generate implementation",
+      "module": "codegen/patch_agent.py · generate_story_implementation",
+      "mode": "deterministic",
+      "toggle": "STORY_LLM_IMPL",
+      "description": "Minimal Spring Boot code with story + COBOL lineage comments."
+    },
+    {
+      "key": "green",
+      "label": "GREEN run",
+      "module": "codegen/test_runner.py",
+      "mode": "toolchain",
+      "description": "Targeted mvn run after implementation."
+    },
+    {
+      "key": "repair",
+      "label": "Bounded repair",
+      "module": "codegen/repair_loop.py",
+      "mode": "llm",
+      "description": "Failing log fed back to the repair role, capped attempts and cost."
+    },
+    {
+      "key": "gate",
+      "label": "Story quality gate",
+      "module": "codegen/story_quality.py",
+      "mode": "deterministic",
+      "description": "AC coverage, lineage, test result, package scope, behaviour signals."
+    },
+    {
+      "key": "persist",
+      "label": "Record status",
+      "module": "codegen/story_storage.py",
+      "mode": "deterministic",
+      "description": "Versioned story_codegen_status artifact; enables resume."
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "A-01",
+      "kind": "outcome",
+      "label": "Outcome statement",
+      "version": 1,
+      "stageKey": "outcome",
+      "objectUri": "inline://outcome",
+      "contentHash": "sha256:1f0c…a91e",
+      "createdAt": "2026-09-01T09:05:00-04:00",
+      "summary": "Retire CICS/VSAM for card servicing; cents-exact posting."
+    },
+    {
+      "id": "A-02",
+      "kind": "graph_snapshot",
+      "label": "Code graph snapshot",
+      "version": 1,
+      "stageKey": "graph",
+      "objectUri": "neo4j://repo/aws-mf-mod-carddemo",
+      "contentHash": "sha256:7ab2…04cd",
+      "createdAt": "2026-09-01T11:20:00-04:00",
+      "summary": "4,812 nodes · 11,406 edges"
+    },
+    {
+      "id": "A-03",
+      "kind": "brd",
+      "label": "Business Requirements Document",
+      "version": 3,
+      "stageKey": "blueprint",
+      "objectUri": "brd_output/brd/aws-mf-mod-carddemo/v3.html",
+      "contentHash": "sha256:c93e…7d10",
+      "createdAt": "2026-09-04T14:50:00-04:00",
+      "summary": "10 requirement threads, groundedness 0.93"
+    },
+    {
+      "id": "A-04",
+      "kind": "backlog",
+      "label": "Backlog (epics & stories)",
+      "version": 2,
+      "stageKey": "backlog",
+      "objectUri": "neo4j://backlog/aws-mf-mod-carddemo/v2",
+      "contentHash": "sha256:5e41…b2f8",
+      "createdAt": "2026-09-06T12:10:00-04:00",
+      "summary": "3 epics · 9 stories · 20 acceptance criteria"
+    },
+    {
+      "id": "A-05",
+      "kind": "seam_candidates",
+      "label": "Ranked seams",
+      "version": 1,
+      "stageKey": "seams",
+      "objectUri": "inline://seams",
+      "contentHash": "sha256:0d77…e6a3",
+      "createdAt": "2026-09-07T10:00:00-04:00",
+      "summary": "9 candidates, top: COACTVWC (reader)"
+    },
+    {
+      "id": "A-06",
+      "kind": "story_dag",
+      "label": "Story plan (DAG)",
+      "version": 1,
+      "stageKey": "plan",
+      "objectUri": "inline://story_dag",
+      "contentHash": "sha256:a2b9…11fe",
+      "createdAt": "2026-09-07T14:45:00-04:00",
+      "summary": "Topological order of 9 stories"
+    },
+    {
+      "id": "A-07",
+      "kind": "domain_design",
+      "label": "Domain design",
+      "version": 2,
+      "stageKey": "domain",
+      "objectUri": "neo4j://domain_design/aws-mf-mod-carddemo/v2",
+      "contentHash": "sha256:9c04…58aa",
+      "createdAt": "2026-09-09T15:10:00-04:00",
+      "summary": "3 bounded contexts; Posting as microservice"
+    },
+    {
+      "id": "A-08",
+      "kind": "technical_design",
+      "label": "Technical design",
+      "version": 1,
+      "stageKey": "design",
+      "objectUri": "inline://technical_design",
+      "contentHash": "sha256:e1d8…3c07",
+      "createdAt": "2026-09-12T13:55:00-04:00",
+      "summary": "3 services · 7 API contracts · 3 ADRs"
+    },
+    {
+      "id": "A-09",
+      "kind": "story_codegen_plan",
+      "label": "Story codegen plan",
+      "version": 1,
+      "stageKey": "build",
+      "objectUri": "inline://story_codegen_plan",
+      "contentHash": "sha256:44f1…9b20",
+      "createdAt": "2026-09-14T09:00:00-04:00",
+      "summary": "9 items in dependency order"
+    },
+    {
+      "id": "A-10",
+      "kind": "story_codegen_status",
+      "label": "Story codegen status",
+      "version": 7,
+      "stageKey": "build",
+      "objectUri": "inline://story_codegen_status",
+      "contentHash": "sha256:b8a6…c4e2",
+      "createdAt": "2026-09-30T10:05:00-04:00",
+      "summary": "Per-story status, telemetry, quality gate"
+    },
+    {
+      "id": "A-11",
+      "kind": "generated_test_refs",
+      "label": "Generated test references",
+      "version": 4,
+      "stageKey": "build",
+      "objectUri": "inline://generated_test_refs",
+      "contentHash": "sha256:31cf…70d9",
+      "createdAt": "2026-09-29T15:12:00-04:00",
+      "summary": "AC id → test method map"
+    },
+    {
+      "id": "A-12",
+      "kind": "spring_boot_project",
+      "label": "Spring Boot module",
+      "version": 4,
+      "stageKey": "build",
+      "objectUri": "codegen_output/aws-mf-mod-carddemo",
+      "contentHash": "sha256:f6e2…8813",
+      "createdAt": "2026-09-30T10:05:00-04:00",
+      "summary": "Java 25 · Spring Boot 4.0.6 · Maven"
+    }
+  ],
+  "epics": [
+    {
+      "id": "EPIC-01",
+      "title": "Account Management",
+      "outcome": "Agents can view and maintain accounts on the new platform with results identical to CICS.",
+      "brdRequirementIds": [
+        "REQ-001",
+        "REQ-002",
+        "RULE-001"
+      ],
+      "storyIds": [
+        "STORY-001",
+        "STORY-002",
+        "STORY-003"
+      ]
+    },
+    {
+      "id": "EPIC-02",
+      "title": "Transaction Posting",
+      "outcome": "Daily transactions are validated and posted with balances matching the COBOL batch to the cent.",
+      "brdRequirementIds": [
+        "REQ-003",
+        "REQ-004",
+        "RULE-002",
+        "RULE-003"
+      ],
+      "storyIds": [
+        "STORY-004",
+        "STORY-005",
+        "STORY-006"
+      ]
+    },
+    {
+      "id": "EPIC-03",
+      "title": "Card Management",
+      "outcome": "Cards linked to an account can be listed, inspected and updated through the new API.",
+      "brdRequirementIds": [
+        "REQ-005",
+        "REQ-006",
+        "RULE-004"
+      ],
+      "storyIds": [
+        "STORY-007",
+        "STORY-008",
+        "STORY-009"
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "id": "STORY-001",
+      "epicId": "EPIC-01",
+      "title": "View account summary",
+      "actor": "Customer service agent",
+      "narrative": "As a customer service agent, I want to view an account's balance, limits and linked customer so that I can answer customer queries.",
+      "brdRequirementIds": [
+        "REQ-001"
+      ],
+      "acceptanceCriteria": [
+        {
+          "id": "AC-001-1",
+          "statement": "Given a valid account id, the summary returns current balance, credit limit and cash limit.",
+          "covered": true
+        },
+        {
+          "id": "AC-001-2",
+          "statement": "Given an unknown account id, the API returns 404 'Account not found'.",
+          "covered": true
+        },
+        {
+          "id": "AC-001-3",
+          "statement": "The linked customer's name and address come from the customer record.",
+          "covered": true
+        }
+      ],
+      "dependsOn": [],
+      "seamRefs": [
+        "COACTVWC"
+      ],
+      "evidenceRefs": [
+        "COACTVWC:9000-READ-ACCT",
+        "COACTVWC:9200-GETCARDXREF-BYACCT",
+        "COACTVWC:9300-GETACCTDATA-BYACCT",
+        "COACTVWC:9400-GETCUSTDATA-BYCUST"
+      ],
+      "context": "Account",
+      "service": "account-service",
+      "planOrder": 1,
+      "codegen": {
+        "status": "passed",
+        "redStatus": "tests-failed",
+        "testStatus": "ok",
+        "attempts": 1,
+        "tests": {
+          "total": 6,
+          "passed": 6,
+          "failed": 0
+        },
+        "changedFiles": [
+          "account/api/AccountController.java",
+          "account/application/AccountQueryService.java",
+          "account/domain/Account.java"
+        ],
+        "wallTimeS": 212,
+        "costUsd": 0.41,
+        "qualityGate": {
+          "passed": true,
+          "score": 1,
+          "checks": {
+            "acceptance_criteria_covered": true,
+            "lineage_cited": true,
+            "test_result_acceptable": true,
+            "production_files_generated": true,
+            "package_scope_respected": true,
+            "expected_package_touched": true,
+            "behavior_signals_represented": true
+          },
+          "failures": [],
+          "warnings": []
+        }
+      }
+    },
+    {
+      "id": "STORY-002",
+      "epicId": "EPIC-01",
+      "title": "Update account details",
+      "actor": "Account administrator",
+      "narrative": "As an account administrator, I want to update credit limits and account status with validation so that account data stays consistent.",
+      "brdRequirementIds": [
+        "REQ-002",
+        "RULE-001"
+      ],
+      "acceptanceCriteria": [
+        {
+          "id": "AC-002-1",
+          "statement": "A credit limit below the current balance is rejected.",
+          "covered": true
+        },
+        {
+          "id": "AC-002-2",
+          "statement": "Account status accepts only 'Y' (active) or 'N' (inactive).",
+          "covered": true
+        },
+        {
+          "id": "AC-002-3",
+          "statement": "A successful update persists and returns the updated record.",
+          "covered": true
+        }
+      ],
+      "dependsOn": [
+        "STORY-001"
+      ],
+      "seamRefs": [
+        "COACTUPC"
+      ],
+      "evidenceRefs": [
+        "COACTUPC:1200-EDIT-MAP-INPUTS",
+        "COACTUPC:1205-COMPARE-OLD-NEW",
+        "COACTUPC:9600-WRITE-PROCESSING"
+      ],
+      "context": "Account",
+      "service": "account-service",
+      "planOrder": 3,
+      "codegen": {
+        "status": "passed",
+        "redStatus": "tests-failed",
+        "testStatus": "ok",
+        "attempts": 2,
+        "tests": {
+          "total": 9,
+          "passed": 9,
+          "failed": 0
+        },
+        "changedFiles": [
+          "account/api/AccountController.java",
+          "account/application/AccountUpdateService.java",
+          "account/domain/AccountValidator.java"
+        ],
+        "wallTimeS": 388,
+        "costUsd": 0.97,
+        "qualityGate": {
+          "passed": true,
+          "score": 1,
+          "checks": {
+            "acceptance_criteria_covered": true,
+            "lineage_cited": true,
+            "test_result_acceptable": true,
+            "production_files_generated": true,
+            "package_scope_respected": true,
+            "expected_package_touched": true,
+            "behavior_signals_represented": true
+          },
+          "failures": [],
+          "warnings": []
+        },
+        "rationale": "Attempt 1 failed ArchUnit (controller → repository); repair routed through AccountUpdateService."
+      }
+    },
+    {
+      "id": "STORY-003",
+      "epicId": "EPIC-01",
+      "title": "Batch account export",
+      "actor": "Operations batch job",
+      "narrative": "As operations, I want the account file export to run on the new platform so that downstream reports keep working.",
+      "brdRequirementIds": [
+        "REQ-002"
+      ],
+      "acceptanceCriteria": [
+        {
+          "id": "AC-003-1",
+          "statement": "Every account record is written with the same layout as the COBOL OUTFILE.",
+          "covered": true
+        },
+        {
+          "id": "AC-003-2",
+          "statement": "COMP-3 amounts are exported with identical scale and sign.",
+          "covered": true
+        }
+      ],
+      "dependsOn": [
+        "STORY-001"
+      ],
+      "seamRefs": [
+        "CBACT01C"
+      ],
+      "evidenceRefs": [
+        "CBACT01C:1000-ACCTFILE-GET-NEXT",
+        "CBACT01C:1300-POPUL-ACCT-RECORD",
+        "CBACT01C:1350-WRITE-ACCT-RECORD"
+      ],
+      "context": "Account",
+      "service": "account-service",
+      "planOrder": 4,
+      "codegen": {
+        "status": "generated-unverified",
+        "redStatus": "toolchain-unavailable",
+        "testStatus": "toolchain-unavailable",
+        "attempts": 1,
+        "tests": {
+          "total": 5,
+          "passed": 0,
+          "failed": 0
+        },
+        "changedFiles": [
+          "account/batch/AccountExportJob.java",
+          "account/batch/AccountRecordWriter.java"
+        ],
+        "wallTimeS": 96,
+        "costUsd": 0.22,
+        "qualityGate": {
+          "passed": true,
+          "score": 0.86,
+          "checks": {
+            "acceptance_criteria_covered": true,
+            "lineage_cited": true,
+            "test_result_acceptable": true,
+            "production_files_generated": true,
+            "package_scope_respected": true,
+            "expected_package_touched": true,
+            "behavior_signals_represented": false
+          },
+          "failures": [],
+          "warnings": [
+            "COBOL behavior-model signals are not represented in generated files"
+          ]
+        },
+        "rationale": "Maven/JDK unavailable on host: accepted as generated-unverified."
+      }
+    },
+    {
+      "id": "STORY-004",
+      "epicId": "EPIC-02",
+      "title": "Validate daily transactions",
+      "actor": "Posting batch job",
+      "narrative": "As the posting batch, I want each daily transaction validated against its card and account so that invalid transactions are rejected before posting.",
+      "brdRequirementIds": [
+        "REQ-003",
+        "RULE-002"
+      ],
+      "acceptanceCriteria": [
+        {
+          "id": "AC-004-1",
+          "statement": "A card number with no cross-reference is rejected with reason 100.",
+          "covered": true
+        },
+        {
+          "id": "AC-004-2",
+          "statement": "A transaction exceeding the credit limit is rejected with reason 102.",
+          "covered": true
+        },
+        {
+          "id": "AC-004-3",
+          "statement": "A transaction after account expiry is rejected with reason 103.",
+          "covered": true
+        }
+      ],
+      "dependsOn": [],
+      "seamRefs": [
+        "CBTRN02C"
+      ],
+      "evidenceRefs": [
+        "CBTRN02C:1500-VALIDATE-TRAN",
+        "CBTRN02C:1500-A-LOOKUP-XREF",
+        "CBTRN02C:1500-B-LOOKUP-ACCT",
+        "CBTRN01C:2000-LOOKUP-XREF"
+      ],
+      "context": "Posting",
+      "service": "posting-service",
+      "planOrder": 2,
+      "codegen": {
+        "status": "passed",
+        "redStatus": "tests-failed",
+        "testStatus": "ok",
+        "attempts": 1,
+        "tests": {
+          "total": 8,
+          "passed": 8,
+          "failed": 0
+        },
+        "changedFiles": [
+          "posting/application/TransactionValidator.java",
+          "posting/domain/RejectReason.java"
+        ],
+        "wallTimeS": 254,
+        "costUsd": 0.52,
+        "qualityGate": {
+          "passed": true,
+          "score": 1,
+          "checks": {
+            "acceptance_criteria_covered": true,
+            "lineage_cited": true,
+            "test_result_acceptable": true,
+            "production_files_generated": true,
+            "package_scope_respected": true,
+            "expected_package_touched": true,
+            "behavior_signals_represented": true
+          },
+          "failures": [],
+          "warnings": []
+        }
+      }
+    },
+    {
+      "id": "STORY-005",
+      "epicId": "EPIC-02",
+      "title": "Post transactions & update balances",
+      "actor": "Posting batch job",
+      "narrative": "As the posting batch, I want valid transactions posted and account and category balances updated so that balances match the legacy system.",
+      "brdRequirementIds": [
+        "REQ-004",
+        "RULE-003"
+      ],
+      "acceptanceCriteria": [
+        {
+          "id": "AC-005-1",
+          "statement": "Posting a transaction adds its amount to the account's current balance.",
+          "covered": true
+        },
+        {
+          "id": "AC-005-2",
+          "statement": "A category balance record is created on first use and accumulated afterwards.",
+          "covered": true
+        },
+        {
+          "id": "AC-005-3",
+          "statement": "Each posted transaction is written to the transaction file.",
+          "covered": true
+        }
+      ],
+      "dependsOn": [
+        "STORY-004"
+      ],
+      "seamRefs": [
+        "CBTRN02C"
+      ],
+      "evidenceRefs": [
+        "CBTRN02C:2000-POST-TRANSACTION",
+        "CBTRN02C:2700-UPDATE-TCATBAL",
+        "CBTRN02C:2700-A-CREATE-TCATBAL-REC",
+        "CBTRN02C:2800-UPDATE-ACCOUNT-REC",
+        "CBTRN02C:2900-WRITE-TRANSACTION-FILE"
+      ],
+      "context": "Posting",
+      "service": "posting-service",
+      "planOrder": 5,
+      "codegen": {
+        "status": "running",
+        "redStatus": "tests-failed",
+        "testStatus": "tests-failed",
+        "attempts": 2,
+        "tests": {
+          "total": 12,
+          "passed": 10,
+          "failed": 2
+        },
+        "changedFiles": [
+          "posting/application/TransactionPostingService.java",
+          "posting/domain/CategoryBalance.java",
+          "posting/infra/CategoryBalanceRepository.java"
+        ],
+        "wallTimeS": 611,
+        "costUsd": 1.64,
+        "qualityGate": {
+          "passed": false,
+          "score": 0.71,
+          "checks": {
+            "acceptance_criteria_covered": true,
+            "lineage_cited": true,
+            "test_result_acceptable": false,
+            "production_files_generated": true,
+            "package_scope_respected": true,
+            "expected_package_touched": true,
+            "behavior_signals_represented": false
+          },
+          "failures": [
+            "tests still failing after implementation",
+            "COBOL behavior-model signals are not represented in generated files"
+          ],
+          "warnings": []
+        },
+        "rationale": "CategoryBalanceTest: no record created on first posting (COBOL 2700-A-CREATE-TCATBAL-REC on INVALID KEY). Repair attempt 2 of 3 running."
+      }
+    },
+    {
+      "id": "STORY-006",
+      "epicId": "EPIC-02",
+      "title": "List transactions with paging",
+      "actor": "Customer service agent",
+      "narrative": "As a customer service agent, I want to browse an account's transactions page by page so that I can investigate disputes.",
+      "brdRequirementIds": [
+        "REQ-003"
+      ],
+      "acceptanceCriteria": [
+        {
+          "id": "AC-006-1",
+          "statement": "Transactions are returned 10 per page.",
+          "covered": false
+        },
+        {
+          "id": "AC-006-2",
+          "statement": "Paging past the last page returns an empty page, not an error.",
+          "covered": false
+        }
+      ],
+      "dependsOn": [
+        "STORY-005"
+      ],
+      "seamRefs": [
+        "COTRN00C"
+      ],
+      "evidenceRefs": [
+        "COTRN00C:PROCESS-PAGE-FORWARD",
+        "COTRN00C:PROCESS-PAGE-BACKWARD",
+        "COTRN00C:POPULATE-TRAN-DATA"
+      ],
+      "context": "Posting",
+      "service": "posting-service",
+      "planOrder": 6,
+      "codegen": {
+        "status": "pending",
+        "attempts": 0,
+        "tests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0
+        },
+        "changedFiles": [],
+        "wallTimeS": 0,
+        "costUsd": 0
+      }
+    },
+    {
+      "id": "STORY-007",
+      "epicId": "EPIC-03",
+      "title": "List cards for an account",
+      "actor": "Customer service agent",
+      "narrative": "As a customer service agent, I want to list all cards linked to an account so that I can pick the one a customer is calling about.",
+      "brdRequirementIds": [
+        "REQ-005"
+      ],
+      "acceptanceCriteria": [
+        {
+          "id": "AC-007-1",
+          "statement": "All cards cross-referenced to the account are returned, filtered as on the CICS screen.",
+          "covered": false
+        }
+      ],
+      "dependsOn": [
+        "STORY-001"
+      ],
+      "seamRefs": [
+        "COCRDLIC"
+      ],
+      "evidenceRefs": [
+        "COCRDLIC:9000-READ-FORWARD",
+        "COCRDLIC:9100-READ-BACKWARDS",
+        "COCRDLIC:9500-FILTER-RECORDS"
+      ],
+      "context": "Card",
+      "service": "card-service",
+      "planOrder": 7,
+      "codegen": {
+        "status": "pending",
+        "attempts": 0,
+        "tests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0
+        },
+        "changedFiles": [],
+        "wallTimeS": 0,
+        "costUsd": 0
+      }
+    },
+    {
+      "id": "STORY-008",
+      "epicId": "EPIC-03",
+      "title": "View card details",
+      "actor": "Customer service agent",
+      "narrative": "As a customer service agent, I want to view a card's status, expiry and embossed name so that I can verify the cardholder.",
+      "brdRequirementIds": [
+        "REQ-005"
+      ],
+      "acceptanceCriteria": [
+        {
+          "id": "AC-008-1",
+          "statement": "Card details are returned for a valid account + card pair; unknown cards return 404.",
+          "covered": false
+        }
+      ],
+      "dependsOn": [
+        "STORY-007"
+      ],
+      "seamRefs": [
+        "COCRDSLC"
+      ],
+      "evidenceRefs": [
+        "COCRDSLC:9100-GETCARD-BYACCTCARD"
+      ],
+      "context": "Card",
+      "service": "card-service",
+      "planOrder": 8,
+      "codegen": {
+        "status": "pending",
+        "attempts": 0,
+        "tests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0
+        },
+        "changedFiles": [],
+        "wallTimeS": 0,
+        "costUsd": 0
+      }
+    },
+    {
+      "id": "STORY-009",
+      "epicId": "EPIC-03",
+      "title": "Update card status & expiry",
+      "actor": "Account administrator",
+      "narrative": "As an account administrator, I want to update a card's status and expiry date with validation so that lost or renewed cards are handled.",
+      "brdRequirementIds": [
+        "REQ-006",
+        "RULE-004"
+      ],
+      "acceptanceCriteria": [
+        {
+          "id": "AC-009-1",
+          "statement": "Expiry month must be 1–12 and the expiry year must be valid.",
+          "covered": false
+        },
+        {
+          "id": "AC-009-2",
+          "statement": "Card status accepts only 'Y' or 'N'.",
+          "covered": false
+        }
+      ],
+      "dependsOn": [
+        "STORY-008"
+      ],
+      "seamRefs": [
+        "COCRDUPC"
+      ],
+      "evidenceRefs": [
+        "COCRDUPC:1250-EDIT-EXPIRY-MON",
+        "COCRDUPC:1260-EDIT-EXPIRY-YEAR",
+        "COCRDUPC:9200-WRITE-PROCESSING"
+      ],
+      "context": "Card",
+      "service": "card-service",
+      "planOrder": 9,
+      "codegen": {
+        "status": "pending",
+        "attempts": 0,
+        "tests": {
+          "total": 0,
+          "passed": 0,
+          "failed": 0
+        },
+        "changedFiles": [],
+        "wallTimeS": 0,
+        "costUsd": 0
+      }
+    }
+  ],
+  "seams": [
+    {
+      "program": "COACTVWC",
+      "kind": "reader",
+      "score": 0.69,
+      "factors": {
+        "business": 0.8,
+        "isolation": 0.9,
+        "testability": 0.9,
+        "dataOwnership": 0.8,
+        "risk": 0.2
+      },
+      "fanIn": 2,
+      "fanOut": 1,
+      "reads": [
+        "ACCTDAT",
+        "CARDXREF",
+        "CUSTDAT"
+      ],
+      "writes": [],
+      "rationale": "Read-only CICS screen: safe to divert, easy to dual-run."
+    },
+    {
+      "program": "COCRDLIC",
+      "kind": "reader",
+      "score": 0.64,
+      "factors": {
+        "business": 0.6,
+        "isolation": 0.9,
+        "testability": 0.9,
+        "dataOwnership": 0.8,
+        "risk": 0.2
+      },
+      "fanIn": 2,
+      "fanOut": 2,
+      "reads": [
+        "CARDDAT",
+        "CARDXREF"
+      ],
+      "writes": [],
+      "rationale": "Read-only card list with filters; no writes."
+    },
+    {
+      "program": "COTRN00C",
+      "kind": "reader",
+      "score": 0.6,
+      "factors": {
+        "business": 0.6,
+        "isolation": 0.8,
+        "testability": 0.9,
+        "dataOwnership": 0.7,
+        "risk": 0.2
+      },
+      "fanIn": 1,
+      "fanOut": 1,
+      "reads": [
+        "TRANSACT"
+      ],
+      "writes": [],
+      "rationale": "Paged browse over the transaction file."
+    },
+    {
+      "program": "COCRDSLC",
+      "kind": "reader",
+      "score": 0.595,
+      "factors": {
+        "business": 0.5,
+        "isolation": 0.9,
+        "testability": 0.8,
+        "dataOwnership": 0.8,
+        "risk": 0.2
+      },
+      "fanIn": 1,
+      "fanOut": 1,
+      "reads": [
+        "CARDDAT"
+      ],
+      "writes": [],
+      "rationale": "Single-record card read."
+    },
+    {
+      "program": "CBACT01C",
+      "kind": "batch",
+      "score": 0.54,
+      "factors": {
+        "business": 0.5,
+        "isolation": 0.8,
+        "testability": 0.8,
+        "dataOwnership": 0.7,
+        "risk": 0.3
+      },
+      "fanIn": 0,
+      "fanOut": 0,
+      "reads": [
+        "ACCTFILE"
+      ],
+      "writes": [
+        "OUTFILE",
+        "ARRYFILE",
+        "VBRCFILE"
+      ],
+      "rationale": "Batch export with a file contract: replace the job step behind the same files."
+    },
+    {
+      "program": "COACTUPC",
+      "kind": "writer",
+      "score": 0.505,
+      "factors": {
+        "business": 0.8,
+        "isolation": 0.6,
+        "testability": 0.7,
+        "dataOwnership": 0.6,
+        "risk": 0.5
+      },
+      "fanIn": 1,
+      "fanOut": 1,
+      "reads": [
+        "ACCTDAT",
+        "CUSTDAT",
+        "CARDXREF"
+      ],
+      "writes": [
+        "ACCTDAT",
+        "CUSTDAT"
+      ],
+      "rationale": "Writer: needs Legacy Mimic write-back until cut-over."
+    },
+    {
+      "program": "CBTRN02C",
+      "kind": "writer",
+      "score": 0.485,
+      "factors": {
+        "business": 1,
+        "isolation": 0.5,
+        "testability": 0.7,
+        "dataOwnership": 0.5,
+        "risk": 0.7
+      },
+      "fanIn": 0,
+      "fanOut": 0,
+      "reads": [
+        "DALYTRAN",
+        "CARDXREF",
+        "ACCTFILE",
+        "TCATBALF"
+      ],
+      "writes": [
+        "TRANSACT",
+        "DALYREJS",
+        "ACCTFILE",
+        "TCATBALF"
+      ],
+      "rationale": "Core posting writer: highest business value, highest risk — strangler-fig with dual run."
+    },
+    {
+      "program": "COCRDUPC",
+      "kind": "writer",
+      "score": 0.475,
+      "factors": {
+        "business": 0.6,
+        "isolation": 0.7,
+        "testability": 0.7,
+        "dataOwnership": 0.6,
+        "risk": 0.5
+      },
+      "fanIn": 1,
+      "fanOut": 1,
+      "reads": [
+        "CARDDAT"
+      ],
+      "writes": [
+        "CARDDAT"
+      ],
+      "rationale": "Writer with optimistic-lock check (9300-CHECK-CHANGE-IN-REC)."
+    },
+    {
+      "program": "COBIL00C",
+      "kind": "writer",
+      "score": 0.405,
+      "factors": {
+        "business": 0.7,
+        "isolation": 0.5,
+        "testability": 0.6,
+        "dataOwnership": 0.5,
+        "risk": 0.6
+      },
+      "fanIn": 1,
+      "fanOut": 1,
+      "reads": [
+        "ACCTDAT",
+        "CARDXREF"
+      ],
+      "writes": [
+        "ACCTDAT",
+        "TRANSACT"
+      ],
+      "rationale": "Bill payment writes account and transaction: out of current scope."
+    }
+  ],
+  "contexts": [
+    {
+      "name": "Account",
+      "capability": "Account servicing",
+      "memberPrograms": [
+        "COACTVWC",
+        "COACTUPC",
+        "CBACT01C"
+      ],
+      "ownedResources": [
+        "ACCTDAT",
+        "CUSTDAT"
+      ],
+      "deployment": "module",
+      "topologyScore": 0.38,
+      "extractionRank": 1,
+      "dependsOn": [
+        {
+          "target": "Card",
+          "style": "sync"
+        }
+      ],
+      "rationale": "Shares customer data with Card; low release independence → module."
+    },
+    {
+      "name": "Card",
+      "capability": "Card lifecycle",
+      "memberPrograms": [
+        "COCRDLIC",
+        "COCRDSLC",
+        "COCRDUPC"
+      ],
+      "ownedResources": [
+        "CARDDAT",
+        "CARDXREF"
+      ],
+      "deployment": "module",
+      "topologyScore": 0.41,
+      "extractionRank": 3,
+      "dependsOn": [
+        {
+          "target": "Account",
+          "style": "sync"
+        }
+      ],
+      "rationale": "Tightly coupled to Account screens → module in the same monolith."
+    },
+    {
+      "name": "Posting",
+      "capability": "Transaction posting",
+      "memberPrograms": [
+        "CBTRN01C",
+        "CBTRN02C",
+        "COTRN00C"
+      ],
+      "ownedResources": [
+        "TRANSACT",
+        "TCATBALF",
+        "DALYTRAN"
+      ],
+      "deployment": "microservice",
+      "topologyScore": 0.72,
+      "extractionRank": 2,
+      "dependsOn": [
+        {
+          "target": "Account",
+          "style": "async"
+        }
+      ],
+      "rationale": "Batch-shaped, own data, independent release cadence → microservice."
+    }
+  ],
+  "services": [
+    {
+      "name": "account-service",
+      "boundedContext": "Account",
+      "deployment": "module",
+      "storyIds": [
+        "STORY-001",
+        "STORY-002",
+        "STORY-003"
+      ],
+      "apis": [
+        {
+          "method": "GET",
+          "path": "/api/accounts/{accountId}",
+          "name": "GetAccountSummary"
+        },
+        {
+          "method": "PUT",
+          "path": "/api/accounts/{accountId}",
+          "name": "UpdateAccount"
+        },
+        {
+          "method": "POST",
+          "path": "/api/accounts/exports",
+          "name": "RunAccountExport"
+        }
+      ],
+      "persistence": [
+        {
+          "resource": "ACCTDAT",
+          "accessPattern": "legacy-mimic"
+        },
+        {
+          "resource": "CUSTDAT",
+          "accessPattern": "read-replica"
+        }
+      ]
+    },
+    {
+      "name": "card-service",
+      "boundedContext": "Card",
+      "deployment": "module",
+      "storyIds": [
+        "STORY-007",
+        "STORY-008",
+        "STORY-009"
+      ],
+      "apis": [
+        {
+          "method": "GET",
+          "path": "/api/accounts/{accountId}/cards",
+          "name": "ListCards"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cards/{cardNumber}",
+          "name": "GetCard"
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cards/{cardNumber}",
+          "name": "UpdateCard"
+        }
+      ],
+      "persistence": [
+        {
+          "resource": "CARDDAT",
+          "accessPattern": "legacy-mimic"
+        },
+        {
+          "resource": "CARDXREF",
+          "accessPattern": "repository"
+        }
+      ]
+    },
+    {
+      "name": "posting-service",
+      "boundedContext": "Posting",
+      "deployment": "microservice",
+      "storyIds": [
+        "STORY-004",
+        "STORY-005",
+        "STORY-006"
+      ],
+      "apis": [
+        {
+          "method": "POST",
+          "path": "/api/postings/daily-batch",
+          "name": "PostDailyBatch"
+        },
+        {
+          "method": "GET",
+          "path": "/api/accounts/{accountId}/transactions",
+          "name": "ListTransactions"
+        }
+      ],
+      "persistence": [
+        {
+          "resource": "TRANSACT",
+          "accessPattern": "repository"
+        },
+        {
+          "resource": "TCATBALF",
+          "accessPattern": "repository"
+        },
+        {
+          "resource": "DALYTRAN",
+          "accessPattern": "read-replica"
+        }
+      ]
+    }
+  ],
+  "traceability": [
+    {
+      "id": "REQ-001",
+      "kind": "requirement",
+      "title": "View account balance, limits and customer",
+      "cobolRefs": [
+        "COACTVWC:9000-READ-ACCT",
+        "COACTVWC:9400-GETCUSTDATA-BYCUST"
+      ],
+      "epicIds": [
+        "EPIC-01"
+      ],
+      "storyIds": [
+        "STORY-001"
+      ],
+      "javaRefs": [
+        "AccountQueryService.findSummary"
+      ],
+      "testRefs": [
+        "AccountSummaryAcceptanceTest"
+      ]
+    },
+    {
+      "id": "REQ-002",
+      "kind": "requirement",
+      "title": "Maintain account details and export the account file",
+      "cobolRefs": [
+        "COACTUPC:9600-WRITE-PROCESSING",
+        "CBACT01C:1350-WRITE-ACCT-RECORD"
+      ],
+      "epicIds": [
+        "EPIC-01"
+      ],
+      "storyIds": [
+        "STORY-002",
+        "STORY-003"
+      ],
+      "javaRefs": [
+        "AccountUpdateService.update",
+        "AccountExportJob.run"
+      ],
+      "testRefs": [
+        "AccountUpdateAcceptanceTest",
+        "AccountExportAcceptanceTest"
+      ]
+    },
+    {
+      "id": "RULE-001",
+      "kind": "rule",
+      "title": "Account edits are validated before write",
+      "cobolRefs": [
+        "COACTUPC:1200-EDIT-MAP-INPUTS"
+      ],
+      "epicIds": [
+        "EPIC-01"
+      ],
+      "storyIds": [
+        "STORY-002"
+      ],
+      "javaRefs": [
+        "AccountValidator.validate"
+      ],
+      "testRefs": [
+        "AccountUpdateAcceptanceTest.rejectsInvalidStatus"
+      ]
+    },
+    {
+      "id": "REQ-003",
+      "kind": "requirement",
+      "title": "Validate and browse daily transactions",
+      "cobolRefs": [
+        "CBTRN01C:2000-LOOKUP-XREF",
+        "COTRN00C:PROCESS-PAGE-FORWARD"
+      ],
+      "epicIds": [
+        "EPIC-02"
+      ],
+      "storyIds": [
+        "STORY-004",
+        "STORY-006"
+      ],
+      "javaRefs": [
+        "TransactionValidator.validate"
+      ],
+      "testRefs": [
+        "TransactionValidationAcceptanceTest"
+      ]
+    },
+    {
+      "id": "RULE-002",
+      "kind": "rule",
+      "title": "Reject unknown-card, over-limit and expired-account transactions",
+      "cobolRefs": [
+        "CBTRN02C:1500-VALIDATE-TRAN"
+      ],
+      "epicIds": [
+        "EPIC-02"
+      ],
+      "storyIds": [
+        "STORY-004"
+      ],
+      "javaRefs": [
+        "TransactionValidator.validate",
+        "RejectReason"
+      ],
+      "testRefs": [
+        "TransactionValidationAcceptanceTest.rejectReasons"
+      ]
+    },
+    {
+      "id": "REQ-004",
+      "kind": "requirement",
+      "title": "Post transactions and update account balances",
+      "cobolRefs": [
+        "CBTRN02C:2000-POST-TRANSACTION",
+        "CBTRN02C:2800-UPDATE-ACCOUNT-REC"
+      ],
+      "epicIds": [
+        "EPIC-02"
+      ],
+      "storyIds": [
+        "STORY-005"
+      ],
+      "javaRefs": [
+        "TransactionPostingService.post"
+      ],
+      "testRefs": [
+        "TransactionPostingAcceptanceTest"
+      ]
+    },
+    {
+      "id": "RULE-003",
+      "kind": "rule",
+      "title": "Category balance created on first use, then accumulated",
+      "cobolRefs": [
+        "CBTRN02C:2700-A-CREATE-TCATBAL-REC",
+        "CBTRN02C:2700-B-UPDATE-TCATBAL-REC"
+      ],
+      "epicIds": [
+        "EPIC-02"
+      ],
+      "storyIds": [
+        "STORY-005"
+      ],
+      "javaRefs": [
+        "CategoryBalance.accumulate"
+      ],
+      "testRefs": [
+        "CategoryBalanceAcceptanceTest"
+      ]
+    },
+    {
+      "id": "REQ-005",
+      "kind": "requirement",
+      "title": "List and view cards linked to an account",
+      "cobolRefs": [
+        "COCRDLIC:9000-READ-FORWARD",
+        "COCRDSLC:9100-GETCARD-BYACCTCARD"
+      ],
+      "epicIds": [
+        "EPIC-03"
+      ],
+      "storyIds": [
+        "STORY-007",
+        "STORY-008"
+      ],
+      "javaRefs": [],
+      "testRefs": []
+    },
+    {
+      "id": "REQ-006",
+      "kind": "requirement",
+      "title": "Update card status and expiry",
+      "cobolRefs": [
+        "COCRDUPC:9200-WRITE-PROCESSING"
+      ],
+      "epicIds": [
+        "EPIC-03"
+      ],
+      "storyIds": [
+        "STORY-009"
+      ],
+      "javaRefs": [],
+      "testRefs": []
+    },
+    {
+      "id": "RULE-004",
+      "kind": "rule",
+      "title": "Card expiry month 1–12 and a valid year",
+      "cobolRefs": [
+        "COCRDUPC:1250-EDIT-EXPIRY-MON",
+        "COCRDUPC:1260-EDIT-EXPIRY-YEAR"
+      ],
+      "epicIds": [
+        "EPIC-03"
+      ],
+      "storyIds": [
+        "STORY-009"
+      ],
+      "javaRefs": [],
+      "testRefs": []
+    }
+  ],
+  "quality": {
+    "brdJudge": {
+      "version": 3,
+      "weighted": 4.7,
+      "rating": "high",
+      "minWeighted": 4.2,
+      "dimensionFloor": 3,
+      "ungroundedRefs": 0,
+      "dimensions": [
+        {
+          "dimension": "completeness",
+          "score": 5,
+          "weight": 0.25,
+          "rationale": "All online and batch subsystems in scope are covered."
+        },
+        {
+          "dimension": "accuracy",
+          "score": 5,
+          "weight": 0.3,
+          "rationale": "Every requirement cites a real paragraph or file."
+        },
+        {
+          "dimension": "clarity",
+          "score": 4,
+          "weight": 0.15,
+          "rationale": "Rules readable by business; some COBOL jargon left."
+        },
+        {
+          "dimension": "consistency",
+          "score": 4,
+          "weight": 0.15,
+          "rationale": "Reject reason codes consistent across sections."
+        },
+        {
+          "dimension": "actionability",
+          "score": 5,
+          "weight": 0.15,
+          "rationale": "Requirements map cleanly to stories."
+        }
+      ]
+    },
+    "build": {
+      "gates": [
+        {
+          "key": "compile",
+          "label": "Compile",
+          "status": "passed",
+          "detail": "Java 25, 0 errors"
+        },
+        {
+          "key": "test",
+          "label": "Tests",
+          "status": "failed",
+          "detail": "33 / 35 passing (STORY-005)"
+        },
+        {
+          "key": "errorprone",
+          "label": "Error Prone",
+          "status": "passed",
+          "detail": "0 findings"
+        },
+        {
+          "key": "spotbugs",
+          "label": "SpotBugs",
+          "status": "passed",
+          "detail": "0 bugs"
+        },
+        {
+          "key": "checkstyle",
+          "label": "Checkstyle",
+          "status": "passed",
+          "detail": "0 violations"
+        },
+        {
+          "key": "archunit",
+          "label": "ArchUnit",
+          "status": "passed",
+          "detail": "Layering and context rules hold"
+        }
+      ]
+    },
+    "equivalence": {
+      "verdict": "pending",
+      "recordsCompared": 0,
+      "mismatches": 0,
+      "tolerated": 0,
+      "tolerances": [
+        "COMP-3 packed decimal",
+        "Zoned overpunch sign",
+        "Implied decimal scale",
+        "Date formats (CCYYMMDD ↔ ISO)"
+      ]
+    }
+  },
+  "workUnits": [
+    {
+      "id": "WU-01",
+      "stage": "blueprint",
+      "unitType": "subsystem",
+      "unitKey": "account-servicing",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0.61,
+      "startedAt": "2026-09-02T09:00:00-04:00",
+      "finishedAt": "2026-09-02T09:06:40-04:00"
+    },
+    {
+      "id": "WU-02",
+      "stage": "blueprint",
+      "unitType": "subsystem",
+      "unitKey": "card-management",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0.55,
+      "startedAt": "2026-09-02T09:00:00-04:00",
+      "finishedAt": "2026-09-02T09:05:55-04:00"
+    },
+    {
+      "id": "WU-03",
+      "stage": "blueprint",
+      "unitType": "subsystem",
+      "unitKey": "transaction-posting",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0.74,
+      "startedAt": "2026-09-02T09:00:00-04:00",
+      "finishedAt": "2026-09-02T09:08:10-04:00"
+    },
+    {
+      "id": "WU-04",
+      "stage": "blueprint",
+      "unitType": "subsystem",
+      "unitKey": "batch-reporting",
+      "status": "succeeded",
+      "attempt": 2,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0.93,
+      "startedAt": "2026-09-02T09:00:00-04:00",
+      "finishedAt": "2026-09-02T10:18:00-04:00",
+      "errorCause": "attempt 1 timed out after 600 s"
+    },
+    {
+      "id": "WU-05",
+      "stage": "blueprint",
+      "unitType": "reduce",
+      "unitKey": "brd",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 1.01,
+      "startedAt": "2026-09-02T10:20:00-04:00",
+      "finishedAt": "2026-09-02T10:31:00-04:00"
+    },
+    {
+      "id": "WU-06",
+      "stage": "blueprint",
+      "unitType": "judge",
+      "unitKey": "brd-v3",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-opus-4-8",
+      "costUsd": 0.88,
+      "startedAt": "2026-09-04T14:50:00-04:00",
+      "finishedAt": "2026-09-04T14:55:00-04:00"
+    },
+    {
+      "id": "WU-07",
+      "stage": "backlog",
+      "unitType": "epics",
+      "unitKey": "all",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0.31,
+      "startedAt": "2026-09-06T10:00:00-04:00",
+      "finishedAt": "2026-09-06T10:04:00-04:00"
+    },
+    {
+      "id": "WU-08",
+      "stage": "backlog",
+      "unitType": "stories",
+      "unitKey": "EPIC-01",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0.27,
+      "startedAt": "2026-09-06T10:05:00-04:00",
+      "finishedAt": "2026-09-06T10:09:00-04:00"
+    },
+    {
+      "id": "WU-09",
+      "stage": "backlog",
+      "unitType": "stories",
+      "unitKey": "EPIC-02",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0.29,
+      "startedAt": "2026-09-06T10:05:00-04:00",
+      "finishedAt": "2026-09-06T10:10:00-04:00"
+    },
+    {
+      "id": "WU-10",
+      "stage": "backlog",
+      "unitType": "stories",
+      "unitKey": "EPIC-03",
+      "status": "cached",
+      "attempt": 1,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0,
+      "startedAt": "2026-09-06T12:05:00-04:00",
+      "finishedAt": "2026-09-06T12:05:01-04:00"
+    },
+    {
+      "id": "WU-11",
+      "stage": "domain",
+      "unitType": "decomposition",
+      "unitKey": "contexts",
+      "status": "succeeded",
+      "attempt": 2,
+      "model": "claude-opus-4-8",
+      "costUsd": 1.2,
+      "startedAt": "2026-09-09T10:00:00-04:00",
+      "finishedAt": "2026-09-09T15:05:00-04:00",
+      "errorCause": "attempt 1 rejected by data-ownership gate (CARDXREF two owners)"
+    },
+    {
+      "id": "WU-12",
+      "stage": "design",
+      "unitType": "service",
+      "unitKey": "account-service",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-opus-4-8",
+      "costUsd": 0.62,
+      "startedAt": "2026-09-11T09:00:00-04:00",
+      "finishedAt": "2026-09-11T09:12:00-04:00"
+    },
+    {
+      "id": "WU-13",
+      "stage": "design",
+      "unitType": "service",
+      "unitKey": "card-service",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-opus-4-8",
+      "costUsd": 0.58,
+      "startedAt": "2026-09-11T09:00:00-04:00",
+      "finishedAt": "2026-09-11T09:11:00-04:00"
+    },
+    {
+      "id": "WU-14",
+      "stage": "design",
+      "unitType": "service",
+      "unitKey": "posting-service",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-opus-4-8",
+      "costUsd": 0.71,
+      "startedAt": "2026-09-11T09:00:00-04:00",
+      "finishedAt": "2026-09-11T09:15:00-04:00"
+    },
+    {
+      "id": "WU-15",
+      "stage": "build",
+      "unitType": "story",
+      "unitKey": "STORY-001",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0.41,
+      "startedAt": "2026-09-17T13:36:00-04:00",
+      "finishedAt": "2026-09-17T13:39:32-04:00"
+    },
+    {
+      "id": "WU-16",
+      "stage": "build",
+      "unitType": "story",
+      "unitKey": "STORY-004",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0.52,
+      "startedAt": "2026-09-23T10:10:00-04:00",
+      "finishedAt": "2026-09-23T10:14:14-04:00"
+    },
+    {
+      "id": "WU-17",
+      "stage": "build",
+      "unitType": "story",
+      "unitKey": "STORY-002",
+      "status": "succeeded",
+      "attempt": 2,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0.97,
+      "startedAt": "2026-09-24T11:00:00-04:00",
+      "finishedAt": "2026-09-24T11:06:28-04:00"
+    },
+    {
+      "id": "WU-18",
+      "stage": "build",
+      "unitType": "story",
+      "unitKey": "STORY-003",
+      "status": "succeeded",
+      "attempt": 1,
+      "model": "claude-sonnet-4-6",
+      "costUsd": 0.22,
+      "startedAt": "2026-09-29T15:10:24-04:00",
+      "finishedAt": "2026-09-29T15:12:00-04:00"
+    },
+    {
+      "id": "WU-19",
+      "stage": "build",
+      "unitType": "story",
+      "unitKey": "STORY-005",
+      "status": "running",
+      "attempt": 2,
+      "model": "claude-opus-4-8",
+      "costUsd": 1.64,
+      "startedAt": "2026-09-30T09:20:00-04:00"
+    },
+    {
+      "id": "WU-20",
+      "stage": "build",
+      "unitType": "story",
+      "unitKey": "STORY-006",
+      "status": "pending",
+      "attempt": 0,
+      "costUsd": 0
+    },
+    {
+      "id": "WU-21",
+      "stage": "build",
+      "unitType": "story",
+      "unitKey": "STORY-007",
+      "status": "deferred",
+      "attempt": 0,
+      "costUsd": 0,
+      "errorCause": "waiting on STORY-006 in plan order"
+    }
+  ],
+  "techStack": {
+    "source": [
+      {
+        "name": "Enterprise COBOL",
+        "purpose": "31 online (CICS) and batch programs"
+      },
+      {
+        "name": "CICS",
+        "purpose": "Online transactions (17 programs)"
+      },
+      {
+        "name": "VSAM KSDS",
+        "purpose": "Account, card, customer, transaction files"
+      },
+      {
+        "name": "JCL",
+        "purpose": "38 batch job members"
+      },
+      {
+        "name": "BMS",
+        "purpose": "17 3270 screen maps"
+      }
+    ],
+    "target": [
+      {
+        "name": "Java",
+        "version": "25",
+        "purpose": "Target language"
+      },
+      {
+        "name": "Spring Boot",
+        "version": "4.0.6",
+        "purpose": "Services, REST APIs, batch"
+      },
+      {
+        "name": "Maven",
+        "version": "3.9",
+        "purpose": "Build + mvn verify quality gates"
+      },
+      {
+        "name": "JUnit",
+        "version": "5",
+        "purpose": "Story acceptance tests"
+      },
+      {
+        "name": "ArchUnit · Checkstyle · SpotBugs · Error Prone",
+        "purpose": "Quality gates"
+      }
+    ],
+    "harness": [
+      {
+        "name": "ProLeap COBOL parser",
+        "version": "2.4.0",
+        "purpose": "tools/cobol-extractor → schemaVersion 2 JSON"
+      },
+      {
+        "name": "Neo4j",
+        "version": "5.24",
+        "purpose": "Code graph (source of truth)"
+      },
+      {
+        "name": "PostgreSQL",
+        "version": "16",
+        "purpose": "Runs, gates, approvals, artifacts, work units"
+      },
+      {
+        "name": "FastAPI",
+        "purpose": "Control plane (/api)"
+      },
+      {
+        "name": "Claude Agent SDK",
+        "version": "0.2.87",
+        "purpose": "Bounded agents over read-only graph tools"
+      },
+      {
+        "name": "Claude Haiku / Sonnet / Opus",
+        "purpose": "Tiered by role (cost/tiering.py)"
+      }
+    ],
+    "mappings": [
+      {
+        "legacy": "CICS online transaction (BMS screen)",
+        "modern": "Spring Boot REST endpoint",
+        "note": "Screen flows become API contracts in the technical design"
+      },
+      {
+        "legacy": "VSAM KSDS file",
+        "modern": "PostgreSQL table behind a repository",
+        "note": "Writers use Legacy Mimic write-back until cut-over"
+      },
+      {
+        "legacy": "JCL batch job step",
+        "modern": "Spring Boot batch job",
+        "note": "Same file contract in and out, so it can be dual-run"
+      },
+      {
+        "legacy": "COMP-3 / zoned decimal",
+        "modern": "BigDecimal with explicit scale",
+        "note": "Equivalence diff tolerates scale and sign encoding only"
+      },
+      {
+        "legacy": "Copybook record",
+        "modern": "Java record / DTO",
+        "note": "Field lineage kept in generated comments"
+      },
+      {
+        "legacy": "PERFORM paragraph",
+        "modern": "Service method",
+        "note": "Every generated file cites its story and COBOL paragraph"
+      }
+    ]
+  },
+  "timeline": [
+    {
+      "id": "EV-01",
+      "ts": "2026-09-01T10:40:00-04:00",
+      "stage": "parse",
+      "role": "system",
+      "type": "deterministic",
+      "summary": "Parsed 31 / 31 programs with ProLeap, 0 errors.",
+      "level": "success"
+    },
+    {
+      "id": "EV-02",
+      "ts": "2026-09-01T11:20:00-04:00",
+      "stage": "graph",
+      "role": "system",
+      "type": "deterministic",
+      "summary": "Graph ingested: 4,812 nodes, 11,406 edges.",
+      "level": "success"
+    },
+    {
+      "id": "EV-03",
+      "ts": "2026-09-02T10:18:00-04:00",
+      "stage": "blueprint",
+      "role": "brd",
+      "type": "retry",
+      "summary": "Subsystem batch-reporting timed out; retried with smaller chunks and succeeded.",
+      "level": "warning"
+    },
+    {
+      "id": "EV-04",
+      "ts": "2026-09-04T14:55:00-04:00",
+      "stage": "blueprint",
+      "role": "judge",
+      "type": "judge",
+      "summary": "BRD v3 judged: weighted 4.7 / 5, rated high (bar 4.2).",
+      "level": "success"
+    },
+    {
+      "id": "EV-05",
+      "ts": "2026-09-04T15:35:00-04:00",
+      "stage": "blueprint",
+      "role": "user",
+      "type": "approval",
+      "summary": "Gate brd_groundedness approved by tech_lead.",
+      "level": "success"
+    },
+    {
+      "id": "EV-06",
+      "ts": "2026-09-06T12:10:00-04:00",
+      "stage": "backlog",
+      "role": "story",
+      "type": "stories",
+      "summary": "Backlog v2: 3 epics, 9 stories, 20 ACs; 10 / 10 requirements covered.",
+      "level": "success"
+    },
+    {
+      "id": "EV-07",
+      "ts": "2026-09-07T14:45:00-04:00",
+      "stage": "plan",
+      "role": "system",
+      "type": "plan",
+      "summary": "Story DAG built: 9 stories, 7 edges, acyclic.",
+      "level": "success"
+    },
+    {
+      "id": "EV-08",
+      "ts": "2026-09-09T12:30:00-04:00",
+      "stage": "domain",
+      "role": "design",
+      "type": "decomposition",
+      "summary": "Data-ownership gate failed: CARDXREF owned by Account and Card.",
+      "level": "error"
+    },
+    {
+      "id": "EV-09",
+      "ts": "2026-09-09T15:10:00-04:00",
+      "stage": "domain",
+      "role": "design",
+      "type": "decomposition",
+      "summary": "Domain design v2: CARDXREF moved to Card; Posting recommended as microservice.",
+      "level": "success"
+    },
+    {
+      "id": "EV-10",
+      "ts": "2026-09-12T14:20:00-04:00",
+      "stage": "design",
+      "role": "user",
+      "type": "approval",
+      "summary": "Gate design_data_ownership approved by architect.",
+      "level": "success"
+    },
+    {
+      "id": "EV-11",
+      "ts": "2026-09-17T13:39:32-04:00",
+      "stage": "build",
+      "role": "codegen",
+      "type": "story",
+      "summary": "STORY-001 passed: red → green in 1 attempt, 6 / 6 tests.",
+      "level": "success"
+    },
+    {
+      "id": "EV-12",
+      "ts": "2026-09-23T10:14:14-04:00",
+      "stage": "build",
+      "role": "codegen",
+      "type": "story",
+      "summary": "STORY-004 passed: reject reasons 100 / 102 / 103 match CBTRN02C.",
+      "level": "success"
+    },
+    {
+      "id": "EV-13",
+      "ts": "2026-09-24T11:06:28-04:00",
+      "stage": "build",
+      "role": "repair",
+      "type": "repair",
+      "summary": "STORY-002 passed after repair: ArchUnit layering fixed.",
+      "level": "success"
+    },
+    {
+      "id": "EV-14",
+      "ts": "2026-09-29T15:12:00-04:00",
+      "stage": "build",
+      "role": "codegen",
+      "type": "story",
+      "summary": "STORY-003 generated-unverified: Maven unavailable on host.",
+      "level": "warning"
+    },
+    {
+      "id": "EV-15",
+      "ts": "2026-09-30T09:31:00-04:00",
+      "stage": "build",
+      "role": "codegen",
+      "type": "tool_call",
+      "summary": "STORY-005 GREEN run: 2 failures in CategoryBalanceAcceptanceTest.",
+      "level": "error"
+    },
+    {
+      "id": "EV-16",
+      "ts": "2026-09-30T10:05:00-04:00",
+      "stage": "build",
+      "role": "repair",
+      "type": "repair",
+      "summary": "STORY-005 repair attempt 2 / 3: mirror 2700-A-CREATE-TCATBAL-REC on missing key.",
+      "level": "info"
+    }
+  ],
+  "feedback": [
+    {
+      "id": "FB-01",
+      "at": "2026-09-03T16:00:00-04:00",
+      "source": "Judge",
+      "target": "BRD v1 · Transaction Posting",
+      "dimension": "accuracy",
+      "severity": "high",
+      "suggestion": "Reject reason codes are paraphrased; cite the exact codes from 1500-VALIDATE-TRAN.",
+      "analysis": "Graph confirms codes 100 / 102 / 103 in CBTRN02C.",
+      "step": "logged",
+      "decision": "applied"
+    },
+    {
+      "id": "FB-02",
+      "at": "2026-09-03T16:00:00-04:00",
+      "source": "Judge",
+      "target": "BRD v1 · Batch Reporting",
+      "dimension": "completeness",
+      "severity": "medium",
+      "suggestion": "Cover CBSTM03A/B statement generation.",
+      "analysis": "Statement batch is outside the agreed outcome scope.",
+      "step": "logged",
+      "decision": "dropped",
+      "reason": "Out of scope per Outcome statement; tracked for a later increment."
+    },
+    {
+      "id": "FB-03",
+      "at": "2026-09-04T11:20:00-04:00",
+      "source": "Judge",
+      "target": "BRD v2 · Account Servicing",
+      "dimension": "clarity",
+      "severity": "low",
+      "suggestion": "Explain 'CARDXREF' in business terms.",
+      "analysis": "Glossary entry added: card-to-account cross-reference.",
+      "step": "logged",
+      "decision": "applied"
+    },
+    {
+      "id": "FB-04",
+      "at": "2026-09-09T12:30:00-04:00",
+      "source": "Data-ownership gate",
+      "target": "Domain design v1",
+      "severity": "high",
+      "suggestion": "CARDXREF must have a single owning context.",
+      "analysis": "Only card programs write CARDXREF; Account only reads it.",
+      "step": "re_reviewed",
+      "decision": "applied"
+    },
+    {
+      "id": "FB-05",
+      "at": "2026-09-30T09:35:00-04:00",
+      "source": "Story quality gate",
+      "target": "STORY-005",
+      "severity": "high",
+      "suggestion": "Category balance must be created when the key is missing.",
+      "analysis": "COBOL writes a new TCATBAL record on INVALID KEY (2700-A); Java only updates.",
+      "step": "actioned",
+      "decision": "open"
+    },
+    {
+      "id": "FB-06",
+      "at": "2026-09-29T15:12:00-04:00",
+      "source": "Story quality gate",
+      "target": "STORY-003",
+      "severity": "medium",
+      "suggestion": "Run targeted Maven tests once JDK 25 + Maven are available.",
+      "analysis": "Status is generated-unverified; lineage and AC coverage already hold.",
+      "step": "analyzed",
+      "decision": "open"
+    }
+  ],
+  "failures": [
+    {
+      "id": "FL-01",
+      "at": "2026-09-02T09:10:00-04:00",
+      "source": "work_unit",
+      "stage": "blueprint",
+      "ref": "subsystem/batch-reporting",
+      "reason": "Timed out after 600 s.",
+      "severity": "medium",
+      "status": "resolved",
+      "resolution": "Retried with smaller map chunks (attempt 2 succeeded)."
+    },
+    {
+      "id": "FL-02",
+      "at": "2026-09-09T12:30:00-04:00",
+      "source": "stage",
+      "stage": "domain",
+      "ref": "design_data_ownership",
+      "reason": "CARDXREF owned by two bounded contexts.",
+      "severity": "high",
+      "status": "resolved",
+      "resolution": "Ownership moved to Card (domain design v2)."
+    },
+    {
+      "id": "FL-03",
+      "at": "2026-09-24T11:02:00-04:00",
+      "source": "story",
+      "stage": "build",
+      "ref": "STORY-002",
+      "reason": "ArchUnit: controller accessed repository directly.",
+      "severity": "medium",
+      "status": "resolved",
+      "resolution": "Repair routed call through AccountUpdateService."
+    },
+    {
+      "id": "FL-04",
+      "at": "2026-09-29T15:12:00-04:00",
+      "source": "story",
+      "stage": "build",
+      "ref": "STORY-003",
+      "reason": "toolchain-unavailable: mvn / JDK 25 not on PATH.",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "id": "FL-05",
+      "at": "2026-09-30T09:31:00-04:00",
+      "source": "story",
+      "stage": "build",
+      "ref": "STORY-005",
+      "reason": "tests-failed: CategoryBalanceAcceptanceTest expected a new record, found none.",
+      "severity": "high",
+      "status": "open"
+    }
+  ],
+  "ask": [
+    {
+      "id": "Q-01",
+      "at": "2026-09-02T14:05:00-04:00",
+      "question": "Which programs write to the account file?",
+      "answer": "COACTUPC (online update), CBTRN02C (posting, 2800-UPDATE-ACCOUNT-REC) and COBIL00C (bill payment) write ACCTDAT/ACCTFILE. CBACT01C only reads it.",
+      "citations": [
+        "COACTUPC:9600-WRITE-PROCESSING",
+        "CBTRN02C:2800-UPDATE-ACCOUNT-REC",
+        "COBIL00C",
+        "CBACT01C:1000-ACCTFILE-GET-NEXT"
+      ]
+    },
+    {
+      "id": "Q-02",
+      "at": "2026-09-02T14:20:00-04:00",
+      "question": "What makes a daily transaction get rejected?",
+      "answer": "1500-VALIDATE-TRAN rejects when the card has no cross-reference (100), the account is not found (101), the credit limit is exceeded (102) or the account has expired (103). Rejects go to DALYREJS.",
+      "citations": [
+        "CBTRN02C:1500-VALIDATE-TRAN",
+        "CBTRN02C:1500-A-LOOKUP-XREF",
+        "CBTRN02C:2500-WRITE-REJECT-REC"
+      ]
+    },
+    {
+      "id": "Q-03",
+      "at": "2026-09-02T15:30:00-04:00",
+      "question": "Which screens only read data?",
+      "answer": "COACTVWC (account view), COCRDLIC (card list), COCRDSLC (card detail) and COTRN00C (transaction list) have no writes — good first seams.",
+      "citations": [
+        "COACTVWC",
+        "COCRDLIC",
+        "COCRDSLC",
+        "COTRN00C"
+      ]
+    }
+  ],
+  "inputs": {
+    "outcome": {
+      "statement": "Retire the CICS/VSAM card-servicing estate onto Java 25 / Spring Boot 4 incrementally, with posting results identical to the cent.",
+      "drivers": [
+        "Lower cost of change",
+        "Mainframe skills retirement risk",
+        "Faster product change for card servicing"
+      ]
+    },
+    "sourceRepo": "source_code_to_analyse/aws-mf-mod-carddemo",
+    "counts": {
+      "programs": 31,
+      "copybooks": 30,
+      "bmsCopybooks": 17,
+      "bmsMaps": 17,
+      "jcl": 38,
+      "cicsPrograms": 17,
+      "cobolLines": 20650
+    },
+    "graph": {
+      "nodes": 4812,
+      "edges": 11406,
+      "paragraphs": 1184,
+      "dataItems": 2641,
+      "parseErrors": 0
+    },
+    "config": {
+      "COBOL_MOD_COPYBOOK_DIRS": "app/cpy, app/cpy-bms",
+      "COBOL_MOD_WORKSPACE_CAP_USD": "50.0",
+      "COBOL_MOD_RUN_CAP_USD": "5.0",
+      "STORY_LLM_TESTS": "0 (deterministic tests)",
+      "STORY_LLM_IMPL": "0 (deterministic implementation)",
+      "ADVISOR_MAX_USES": "3",
+      "COBOL_MOD_PROMPT_CACHING_1H": "0"
+    }
+  },
+  "state": {
+    "currentStage": "build",
+    "currentStoryId": "STORY-005",
+    "budget": {
+      "workspaceCapUsd": 50,
+      "runCapUsd": 5,
+      "spentUsd": 18.4,
+      "killed": false
+    },
+    "tokens": {
+      "input": 3180000,
+      "output": 390000,
+      "cacheRead": 1950000,
+      "cacheCreation": 410000
+    },
+    "agentRuns": [
+      {
+        "id": "run-blueprint-3",
+        "role": "brd",
+        "stage": "blueprint",
+        "model": "claude-sonnet-4-6",
+        "status": "succeeded",
+        "startedAt": "2026-09-02T09:00:00-04:00",
+        "finishedAt": "2026-09-04T14:55:00-04:00",
+        "tokens": 1210000,
+        "costUsd": 4.72
+      },
+      {
+        "id": "run-backlog-2",
+        "role": "story",
+        "stage": "backlog",
+        "model": "claude-sonnet-4-6",
+        "status": "succeeded",
+        "startedAt": "2026-09-06T10:00:00-04:00",
+        "finishedAt": "2026-09-06T12:10:00-04:00",
+        "tokens": 305000,
+        "costUsd": 1.12
+      },
+      {
+        "id": "run-domain-2",
+        "role": "design",
+        "stage": "domain",
+        "model": "claude-opus-4-8",
+        "status": "succeeded",
+        "startedAt": "2026-09-09T10:00:00-04:00",
+        "finishedAt": "2026-09-09T15:10:00-04:00",
+        "tokens": 290000,
+        "costUsd": 2.19
+      },
+      {
+        "id": "run-design-1",
+        "role": "design",
+        "stage": "design",
+        "model": "claude-opus-4-8",
+        "status": "succeeded",
+        "startedAt": "2026-09-11T09:00:00-04:00",
+        "finishedAt": "2026-09-12T13:55:00-04:00",
+        "tokens": 230000,
+        "costUsd": 1.91
+      },
+      {
+        "id": "run-build-3",
+        "role": "codegen",
+        "stage": "build",
+        "model": "claude-sonnet-4-6",
+        "status": "succeeded",
+        "startedAt": "2026-09-17T13:36:00-04:00",
+        "finishedAt": "2026-09-29T15:12:00-04:00",
+        "tokens": 541000,
+        "costUsd": 2.12
+      },
+      {
+        "id": "run-build-4",
+        "role": "codegen",
+        "stage": "build",
+        "model": "claude-sonnet-4-6",
+        "status": "running",
+        "startedAt": "2026-09-30T09:20:00-04:00",
+        "tokens": 430000,
+        "costUsd": 1.64
+      }
+    ]
+  },
+  "history": [
+    {
+      "date": "2026-09-01",
+      "stagesPassed": 5,
+      "storiesAccepted": 0,
+      "costUsd": 0.8
+    },
+    {
+      "date": "2026-09-04",
+      "stagesPassed": 6,
+      "storiesAccepted": 0,
+      "costUsd": 7.6
+    },
+    {
+      "date": "2026-09-06",
+      "stagesPassed": 7,
+      "storiesAccepted": 0,
+      "costUsd": 8.7
+    },
+    {
+      "date": "2026-09-07",
+      "stagesPassed": 9,
+      "storiesAccepted": 0,
+      "costUsd": 9
+    },
+    {
+      "date": "2026-09-09",
+      "stagesPassed": 10,
+      "storiesAccepted": 0,
+      "costUsd": 11.2
+    },
+    {
+      "date": "2026-09-12",
+      "stagesPassed": 11,
+      "storiesAccepted": 0,
+      "costUsd": 13.2
+    },
+    {
+      "date": "2026-09-17",
+      "stagesPassed": 11,
+      "storiesAccepted": 1,
+      "costUsd": 13.6
+    },
+    {
+      "date": "2026-09-23",
+      "stagesPassed": 11,
+      "storiesAccepted": 2,
+      "costUsd": 14.1
+    },
+    {
+      "date": "2026-09-24",
+      "stagesPassed": 11,
+      "storiesAccepted": 3,
+      "costUsd": 15.1
+    },
+    {
+      "date": "2026-09-29",
+      "stagesPassed": 11,
+      "storiesAccepted": 4,
+      "costUsd": 15.3
+    },
+    {
+      "date": "2026-09-30",
+      "stagesPassed": 11,
+      "storiesAccepted": 4,
+      "costUsd": 18.4
+    }
+  ]
+}

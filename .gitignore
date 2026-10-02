@@ -1,0 +1,5 @@
+node_modules/
+dist/
+*.tsbuildinfo
+# Generated from codegen_output by `npm run import` (run-specific)
+public/data/dashboard-data.json
